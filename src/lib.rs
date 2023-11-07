@@ -1,7 +1,7 @@
 use glam::*;
 use rhai::*;
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct ScriptedMesh {
     pub positions: Vec<Vec3>,
     pub indices: Vec<u32>,
@@ -9,16 +9,71 @@ pub struct ScriptedMesh {
 }
 
 impl ScriptedMesh {
-    fn new() -> Self {
-        Self { positions: Vec::new(), indices: Vec::new(), normals: Vec::new() }
+    pub fn new() -> Self {
+        Self { 
+            positions: Vec::new(), 
+            indices: Vec::new(), 
+            normals: Vec::new()
+        }
     }
+
+    pub fn vec(x: f32, y: f32, z: f32) -> Vec3 { Vec3 { x, y, z } }
+
+    // insert and remove functions
+    pub fn insert_position(&mut self, position: Vec3) { self.positions.push(position); }
+    pub fn insert_index(&mut self, index: i64) { self.indices.push(index as u32); }
+    pub fn insert_index_set(&mut self, a: i64, b: i64, c: i64) { self.indices.push(a as u32); self.indices.push(b as u32); self.indices.push(c as u32); }
+    pub fn insert_normal(&mut self, normals: Vec3) { self.normals.push(normals); }
+
+    pub fn insert_positions(&mut self, mut new: Vec<Vec3>) { self.positions.append(&mut new); }
+    pub fn insert_indices(&mut self, mut new: Vec<u32>) { self.indices.append(&mut new); }
+    pub fn insert_normals(&mut self, mut new: Vec<Vec3>) { self.normals.append(&mut new); }
+
+    pub fn clear_positions(&mut self) { self.positions.clear(); }
+    pub fn clear_indices(&mut self) { self.indices.clear(); }
+    pub fn clear_normals(&mut self) { self.normals.clear(); }
+
+    pub fn remove_positions(&mut self, index: usize) -> Vec3 { self.positions.remove(index) }
+    pub fn remove_index(&mut self, index: usize) -> u32 { self.indices.remove(index) }
+    pub fn remove_normal(&mut self, index: usize) -> Vec3 { self.normals.remove(index) }
+
+    // getters and setters
+    pub fn get_positions(&mut self) -> Vec<Vec3> { self.positions.clone() }
+    pub fn get_indices(&mut self) -> Vec<u32> { self.indices.clone() }
+    pub fn get_normals(&mut self) -> Vec<Vec3> { self.normals.clone() }
+    pub fn set_positions(&mut self, new: Vec<Vec3>) { self.positions = new; }
+    pub fn set_indices(&mut self, new: Vec<u32>) { self.indices = new; }
+    pub fn set_normals(&mut self, new: Vec<Vec3>) { self.normals = new; }
+
+    // debug utils
+    pub fn to_string(&mut self) -> String { String::new() }
+    pub fn to_debug(&mut self) -> String { format!("{:?}", self) }
 }
 
 impl CustomType for ScriptedMesh {
     fn build(mut builder: TypeBuilder<Self>) {
         builder
             .with_name("Mesh")
-            .with_fn("new_mesh", Self::new);
+            .on_print(Self::to_string)
+            .on_debug(Self::to_debug)
+            .with_fn("new_mesh", Self::new)
+            .with_fn("vec", Self::vec)
+            .with_fn("insert_position", Self::insert_position)
+            .with_fn("insert_index", Self::insert_index)
+            .with_fn("insert_index_set", Self::insert_index_set)
+            .with_fn("insert_normal", Self::insert_normal)
+            .with_fn("insert_positions", Self::insert_positions)
+            .with_fn("insert_indices", Self::insert_indices)
+            .with_fn("insert_normals", Self::insert_normals)
+            .with_fn("clear_positions", Self::clear_positions)
+            .with_fn("clear_indices", Self::clear_indices)
+            .with_fn("clear_normals", Self::clear_normals)
+            .with_fn("remove_positions", Self::remove_positions)
+            .with_fn("remove_index", Self::remove_index)
+            .with_fn("remove_normal", Self::remove_normal)
+            .with_get_set("positions", Self::get_positions, Self::set_positions)
+            .with_get_set("indices", Self::get_indices, Self::set_indices)
+            .with_get_set("normals", Self::get_normals, Self::set_normals);
     }
 }
 
