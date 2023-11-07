@@ -1,66 +1,73 @@
 let mesh = new_mesh();
-mesh.insert_position(vec(-1.0,  1.0, -1.0));
-mesh.insert_position(vec(1.0,   1.0, -1.0));
-mesh.insert_position(vec(-1.0,  1.0,  1.0));
-mesh.insert_position(vec(1.0,   1.0,  1.0));
-mesh.insert_position(vec(-1.0, -1.0, -1.0));
-mesh.insert_position(vec(1.0,  -1.0, -1.0));
-mesh.insert_position(vec(-1.0, -1.0,  1.0));
-mesh.insert_position(vec(1.0,  -1.0,  1.0));
-mesh.insert_position(vec(-1.0,  1.0,  1.0));
-mesh.insert_position(vec(1.0,   1.0,  1.0));
-mesh.insert_position(vec(-1.0, -1.0,  1.0));
-mesh.insert_position(vec(1.0,  -1.0,  1.0));
-mesh.insert_position(vec(-1.0,  1.0, -1.0));
-mesh.insert_position(vec(1.0,   1.0, -1.0));
-mesh.insert_position(vec(-1.0, -1.0, -1.0));
-mesh.insert_position(vec(1.0,  -1.0, -1.0));
-mesh.insert_position(vec(-1.0,  1.0,  1.0));
-mesh.insert_position(vec(-1.0,  1.0, -1.0));
-mesh.insert_position(vec(-1.0, -1.0,  1.0));
-mesh.insert_position(vec(-1.0, -1.0, -1.0));
-mesh.insert_position(vec(1.0,   1.0,  1.0));
-mesh.insert_position(vec(1.0,   1.0, -1.0));
-mesh.insert_position(vec(1.0,  -1.0,  1.0));
-mesh.insert_position(vec(1.0,  -1.0, -1.0));
 
-mesh.insert_index_set(2, 6, 7);
-mesh.insert_index_set(2, 7, 3);
-mesh.insert_index_set(0, 5, 4);
-mesh.insert_index_set(0, 1, 5);
-mesh.insert_index_set(0, 6, 2);
-mesh.insert_index_set(0, 4, 6);
-mesh.insert_index_set(1, 3, 7);
-mesh.insert_index_set(1, 7, 5);
-mesh.insert_index_set(0, 2, 3);
-mesh.insert_index_set(0, 3, 1);
-mesh.insert_index_set(4, 7, 6);
-mesh.insert_index_set(4, 5, 7);
+mesh.insert_positions([ 
+    vec(-1.0, 1.0, -1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,  -1.0, -1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(-1.0,  1.0, -1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,  -1.0, -1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(-1.0,  1.0, -1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(1.0,  -1.0, -1.0)]
+);
 
-mesh.insert_normal(vec(-1.0,  1.0, -1.0));
-mesh.insert_normal(vec(1.0,   1.0, -1.0));
-mesh.insert_normal(vec(-1.0,  1.0,  1.0));
-mesh.insert_normal(vec(1.0,   1.0,  1.0));
-mesh.insert_normal(vec(-1.0, -1.0, -1.0));
-mesh.insert_normal(vec(1.0,  -1.0, -1.0));
-mesh.insert_normal(vec(-1.0, -1.0,  1.0));
-mesh.insert_normal(vec(1.0,  -1.0,  1.0));
-mesh.insert_normal(vec(-1.0,  1.0,  1.0));
-mesh.insert_normal(vec(1.0,   1.0,  1.0));
-mesh.insert_normal(vec(-1.0, -1.0,  1.0));
-mesh.insert_normal(vec(1.0,  -1.0,  1.0));
-mesh.insert_normal(vec(-1.0,  1.0, -1.0));
-mesh.insert_normal(vec(1.0,   1.0, -1.0));
-mesh.insert_normal(vec(-1.0, -1.0, -1.0));
-mesh.insert_normal(vec(1.0,  -1.0, -1.0));
-mesh.insert_normal(vec(-1.0,  1.0,  1.0));
-mesh.insert_normal(vec(-1.0,  1.0, -1.0));
-mesh.insert_normal(vec(-1.0, -1.0,  1.0));
-mesh.insert_normal(vec(-1.0, -1.0, -1.0));
-mesh.insert_normal(vec(1.0,   1.0,  1.0));
-mesh.insert_normal(vec(1.0,   1.0, -1.0));
-mesh.insert_normal(vec(1.0,  -1.0,  1.0));
-mesh.insert_normal(vec(1.0,  -1.0, -1.0));
+mesh.insert_indices([
+    2, 6, 7,
+    2, 7, 3,
+    0, 5, 4,
+    0, 1, 5,
+    0, 6, 2,
+    0, 4, 6,
+    1, 3, 7,
+    1, 7, 5,
+    0, 2, 3,
+    0, 3, 1,
+    4, 7, 6,
+    4, 5, 7
+]);
+
+mesh.insert_normals([ 
+    vec(-1.0, 1.0, -1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,  -1.0, -1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(-1.0,  1.0, -1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,  -1.0, -1.0),
+    vec(-1.0,  1.0,  1.0),
+    vec(-1.0,  1.0, -1.0),
+    vec(-1.0, -1.0,  1.0),
+    vec(-1.0, -1.0, -1.0),
+    vec(1.0,   1.0,  1.0),
+    vec(1.0,   1.0, -1.0),
+    vec(1.0,  -1.0,  1.0),
+    vec(1.0,  -1.0, -1.0)]
+);
 
 debug(mesh);
 return mesh;

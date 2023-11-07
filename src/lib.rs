@@ -25,9 +25,9 @@ impl ScriptedMesh {
     pub fn insert_index_set(&mut self, a: i64, b: i64, c: i64) { self.indices.push(a as u32); self.indices.push(b as u32); self.indices.push(c as u32); }
     pub fn insert_normal(&mut self, normals: Vec3) { self.normals.push(normals); }
 
-    pub fn insert_positions(&mut self, mut new: Vec<Vec3>) { self.positions.append(&mut new); }
-    pub fn insert_indices(&mut self, mut new: Vec<u32>) { self.indices.append(&mut new); }
-    pub fn insert_normals(&mut self, mut new: Vec<Vec3>) { self.normals.append(&mut new); }
+    pub fn insert_positions(&mut self, new: Array) { self.positions.append(&mut array_to_vec(new)); }
+    pub fn insert_indices(&mut self, new: Array) { self.indices.append(&mut array_to_vec_u32(new)); }
+    pub fn insert_normals(&mut self, new: Array) { self.normals.append(&mut array_to_vec(new)); }
 
     pub fn clear_positions(&mut self) { self.positions.clear(); }
     pub fn clear_indices(&mut self) { self.indices.clear(); }
@@ -116,4 +116,12 @@ impl ScriptedMeshEngine {
         // pass back the result
         return Ok(result);
     }
+}
+
+pub fn array_to_vec<T: Clone + 'static>(input: Array) -> Vec<T> {
+    input.iter().map(|a| a.clone().cast::<T>()).collect::<Vec<T>>()
+}
+
+pub fn array_to_vec_u32(input: Array) -> Vec<u32> {
+    input.iter().map(|a| a.as_int().unwrap() as u32).collect::<Vec<u32>>()
 }
