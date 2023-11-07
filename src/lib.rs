@@ -33,9 +33,9 @@ impl ScriptedMesh {
     pub fn clear_indices(&mut self) { self.indices.clear(); }
     pub fn clear_normals(&mut self) { self.normals.clear(); }
 
-    pub fn remove_positions(&mut self, index: usize) -> Vec3 { self.positions.remove(index) }
-    pub fn remove_index(&mut self, index: usize) -> u32 { self.indices.remove(index) }
-    pub fn remove_normal(&mut self, index: usize) -> Vec3 { self.normals.remove(index) }
+    pub fn remove_positions(&mut self, index: i64) -> Vec3 { self.positions.remove(index as usize) }
+    pub fn remove_index(&mut self, index: i64) -> u32 { self.indices.remove(index as usize) }
+    pub fn remove_normal(&mut self, index: i64) -> Vec3 { self.normals.remove(index as usize) }
 
     // getters and setters
     pub fn get_positions(&mut self) -> Vec<Vec3> { self.positions.clone() }
